@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const Player = (props) => {
+const Player = ({ count, increaseCounter }) => {
   const [points, setPoints] = useState(20);
+
+  const handleClick = () => {
+    if (points > 0) {
+      increaseCounter()
+      setPoints(points - 1 + grantPrize())
+    }
+  }
+
+  const grantPrize = () => {
+    const new_count = count + 1
+    var prize = 0
+
+    if (new_count % 500 === 0)
+      prize = 250
+    if (new_count % 100 === 0)
+      prize = 40
+    if (new_count % 10 === 0)
+      prize = 5
+    return prize
+  }
 
   return (
     <div>
-      <button onClick={() => {
-        if (points > 0) {
-          props.increaseCounter()
-          setPoints(points - 1)
-        }
-      }}>
+      <button onClick={() => {handleClick()}}>
         Increase
       </button>
       <p> You have { points } points </p>
@@ -29,7 +44,7 @@ const Counter = () => {
   return (
     <div>
       <p> { count } </p>
-      <Player increaseCounter={increaseCounter}></Player>
+      <Player count={count} increaseCounter={increaseCounter}></Player>
     </div>
   )
 }
