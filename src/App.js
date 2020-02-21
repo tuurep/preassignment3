@@ -15,12 +15,13 @@ const Player = ({ count, increaseCounter }) => {
     const new_count = count + 1
     var prize = 0
 
-    if (new_count % 500 === 0)
-      prize = 250
-    if (new_count % 100 === 0)
-      prize = 40
     if (new_count % 10 === 0)
       prize = 5
+    if (new_count % 100 === 0)
+      prize = 40
+    if (new_count % 500 === 0)
+      prize = 250
+      
     return prize
   }
 
