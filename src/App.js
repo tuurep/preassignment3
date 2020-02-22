@@ -12,6 +12,9 @@ const Player = ({ count, increaseCounter }) => {
       increaseCounter()
       setPoints(points - 1 + grantPrize())
     }
+    else {
+      alert.show(<div style={{ color: 'red' }}>You're out of points</div>)
+    }
   }
 
   const grantPrize = () => {
