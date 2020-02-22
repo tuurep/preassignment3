@@ -11,6 +11,11 @@ const styles = {
     MsTransform: "translate(-50%, -50%)",
     transform: "translate(-50%, -50%)",
     textAlign: "center"
+  },
+  roundButton: {
+    borderRadius: "50%",
+    padding: 58,
+    backgroundColor: "#ff4f28"
   }
 }
 
@@ -49,8 +54,9 @@ const Player = ({ count, increaseCounter }) => {
 
   return (
     <div>
-      <button onClick={() => {handleClick()}}>
-        Increase
+      <button style={styles.roundButton} onClick={() => {handleClick()}}>
+        <h2>Increase</h2>
+        <h2>counter</h2>
       </button>
       <p> You have { points } points </p>
     </div>
