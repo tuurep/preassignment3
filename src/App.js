@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useAlert } from 'react-alert'
 import './App.css';
 
 const Player = ({ count, increaseCounter }) => {
   const [points, setPoints] = useState(20);
+
+  const alert = useAlert()
 
   const handleClick = () => {
     if (points > 0) {
@@ -21,6 +24,8 @@ const Player = ({ count, increaseCounter }) => {
       prize = 40
     if (new_count % 500 === 0)
       prize = 250
+
+    alert.show(<div>Wow bruh, it turns out you won { prize } points</div>)
       
     return prize
   }
@@ -54,7 +59,7 @@ function App() {
   return (
     <div>
       <Counter>
-
+        
       </Counter>
     </div>
   );
