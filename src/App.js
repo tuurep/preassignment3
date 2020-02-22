@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { useAlert } from 'react-alert'
 import './App.css';
 
+const styles = {
+  center: {
+    margin: 0,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    MsTransform: "translate(-50%, -50%)",
+    transform: "translate(-50%, -50%)",
+    textAlign: "center"
+  }
+}
+
 const Player = ({ count, increaseCounter }) => {
   const [points, setPoints] = useState(20);
 
@@ -54,7 +66,7 @@ const Counter = () => {
 
   return (
     <div>
-      <p> { count } </p>
+      <h1> { count } </h1>
       <Player count={count} increaseCounter={increaseCounter}></Player>
     </div>
   )
@@ -62,7 +74,7 @@ const Counter = () => {
 
 function App() {
   return (
-    <div>
+    <div style={styles.center}>
       <Counter>
         
       </Counter>
