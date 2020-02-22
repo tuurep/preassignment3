@@ -15,7 +15,18 @@ const styles = {
   roundButton: {
     borderRadius: "50%",
     padding: 58,
-    backgroundColor: "#ff4f28"
+    backgroundColor: "#ff4f28",
+    outline: "none",
+    fontSize: "30px",
+    fontFamily: "Montserrat",
+    textShadow: "4px 4px black",
+    color: "white",
+    lineHeight: 1.9,
+    boxShadow: "5px 10px #282828",
+    marginBottom: "80px"
+  },
+  playerInfo: {
+
   }
 }
 
@@ -46,7 +57,7 @@ const Player = ({ count, increaseCounter }) => {
       prize = 250
     
     if (prize !== 0) {
-      alert.show(<div>Wow bruh, it turns out you won { prize } points</div>)
+      alert.show(<div>You win { prize } points!</div>)
     }
       
     return prize
@@ -55,8 +66,8 @@ const Player = ({ count, increaseCounter }) => {
   return (
     <div>
       <button style={styles.roundButton} onClick={() => {handleClick()}}>
-        <h2>Increase</h2>
-        <h2>counter</h2>
+        <div>Increase</div>
+        <div>counter</div>
       </button>
       <p> You have { points } points </p>
     </div>
@@ -72,8 +83,13 @@ const Counter = () => {
 
   return (
     <div>
-      <h1> { count } </h1>
-      <Player count={count} increaseCounter={increaseCounter}></Player>
+      <i>(will be hidden later)</i>
+      <h1>{ count }</h1>
+      <Player 
+        count={count}
+        increaseCounter={increaseCounter}
+        style={styles.playerInfo}>
+      </Player>
     </div>
   )
 }
