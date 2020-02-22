@@ -24,8 +24,10 @@ const Player = ({ count, increaseCounter }) => {
       prize = 40
     if (new_count % 500 === 0)
       prize = 250
-
-    alert.show(<div>Wow bruh, it turns out you won { prize } points</div>)
+    
+    if (prize !== 0) {
+      alert.show(<div>Wow bruh, it turns out you won { prize } points</div>)
+    }
       
     return prize
   }
