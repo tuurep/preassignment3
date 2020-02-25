@@ -29,15 +29,14 @@ const styles = {
 
   },
   errorAlert: {
-    borderRadius: "20%",
-    fontSize: 28,
+    fontSize: 20,
+    fontWeight: "bold",
     backgroundColor: "#f04722",
     padding: 40,
     border: "solid"
   },
   winAlert: {
-    borderRadius: "20%",
-    fontSize: 28,
+    fontSize: 20,
     backgroundColor: "#f9ff57",
     padding: 40,
     border: "solid"
