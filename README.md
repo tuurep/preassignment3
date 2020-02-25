@@ -12,7 +12,7 @@ Objectives:
 * react-alert
 * express
 * socket.io
-* (for running dev servers) concurrently
+* (for running dev servers) [concurrently](https://www.npmjs.com/package/concurrently)
 
 **Install dependencies:**
 
@@ -29,3 +29,4 @@ Run both servers with *concurrently*
 
 * *Be at /server directory*
 * `npm run dev`
+* App runs at localhost:3000
