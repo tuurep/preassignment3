@@ -25,7 +25,7 @@ npm install needs to be run on client and server separately
 
 **Run locally:**
 
-Run both servers with `concurrently`
+Run both servers with *concurrently*
 
 * *Be at /server directory*
 * `npm run dev`
