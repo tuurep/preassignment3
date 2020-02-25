@@ -4,16 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-import AlertTemplate from 'react-alert-template-basic'
 
 const options = {
-  // you can also just use 'bottom center'
+  // you can also just use 'top center'
   position: positions.TOP_CENTER,
-  timeout: 5000,
+  timeout: 3000,
   offset: '30px',
   // you can also just use 'scale'
   transition: transitions.SCALE
 }
+
+const AlertTemplate = ({ style, message }) => (
+  <div style={style}>
+    {message}
+  </div>
+)
 
 const Root = () => (
   <AlertProvider template={AlertTemplate} {...options}>

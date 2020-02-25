@@ -27,6 +27,20 @@ const styles = {
   },
   playerInfo: {
 
+  },
+  errorAlert: {
+    borderRadius: "20%",
+    fontSize: 28,
+    backgroundColor: "#f04722",
+    padding: 40,
+    border: "solid"
+  },
+  winAlert: {
+    borderRadius: "20%",
+    fontSize: 28,
+    backgroundColor: "#f9ff57",
+    padding: 40,
+    border: "solid"
   }
 }
 
@@ -41,7 +55,7 @@ const Player = ({ count, increaseCounter }) => {
       setPoints(points - 1 + grantPrize())
     }
     else {
-      alert.show(<div style={{ color: 'red' }}>You're out of points</div>)
+      alert.show(<div style={styles.errorAlert}>You're out of points</div>)
     }
   }
 
@@ -57,7 +71,7 @@ const Player = ({ count, increaseCounter }) => {
       prize = 250
     
     if (prize !== 0) {
-      alert.show(`You win ${ prize } points!`)
+      alert.show(<div style={styles.winAlert}>You win { prize } points!</div>)
     }
       
     return prize
