@@ -10,7 +10,6 @@ Objectives:
 Dependencies:
 
 * react-alert
-* react-alert-template-basic
 
 Run locally:
 
