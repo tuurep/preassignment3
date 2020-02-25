@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "client": "npm run start --prefix ../client",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
     "test": "test"
@@ -12,5 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   }
 }

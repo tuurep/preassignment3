@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useAlert } from 'react-alert'
 import './App.css';
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:5000");
 
 // Move styles to different file . . .
 const styles = {
@@ -53,6 +56,7 @@ const Player = ({ count, increaseCounter }) => {
     if (points > 0) {
       increaseCounter()
       setPoints(points - 1 + grantPrize())
+      socket.emit("message", `Greetings, I have increased counter and it's now at ${count + 1}!`);
     }
     else {
       alert.show(<div style={styles.errorAlert}>You're out of points</div>)
