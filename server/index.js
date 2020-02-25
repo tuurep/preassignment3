@@ -10,6 +10,6 @@ io.on("connection", socket => {
   const { id } = socket.client;
   console.log(`User connected: ${id}`);
   socket.on("message", msg => {
-    console.log(`${id}: ${msg}`);
+    console.log(msg);
   });
 });

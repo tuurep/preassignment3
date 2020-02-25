@@ -34,8 +34,7 @@ const styles = {
   },
   errorAlert: {
     fontSize: 20,
-    fontWeight: "bold",
-    backgroundColor: "#f04722",
+    backgroundColor: "#A9A9A9",
     padding: 40,
     border: "solid"
   },
@@ -47,19 +46,59 @@ const styles = {
   }
 }
 
+const NameForm = ({ setName }) => {
+  const [value, setValue] = useState('')
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    setName(value)
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Choose your name:
+        <input type="text" value={value} onChange={handleChange} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  )
+}
+
 const Player = ({ count, increaseCounter }) => {
   const [points, setPoints] = useState(20);
+  const [name, setName] = useState('');
 
   const alert = useAlert()
 
-  const handleClick = () => {
-    if (points > 0) {
-      increaseCounter()
-      setPoints(points - 1 + grantPrize())
-      socket.emit("message", `Greetings, I have increased counter and it's now at ${count + 1}!`);
+  const renderPlayerInfo = () => {
+    if (name === '') {  
+      return (
+        <NameForm setName={setName} />
+      )
+    }
+    else return (
+      <div>
+        <p style={{"font-size": 24, "font-weight": "bold"}} >{name}</p>
+        <p>Points: { points }</p>
+      </div>
+    )
+  }
+
+  const handleCounterButtonClick = () => {
+    if (points <= 0) {
+      alert.show(<div style={styles.errorAlert}>You're out of points</div>)
+    }
+    else if (name === '') {
+      alert.show(<div style={styles.errorAlert}>You must choose a name</div>)
     }
     else {
-      alert.show(<div style={styles.errorAlert}>You're out of points</div>)
+      increaseCounter()
+      setPoints(points - 1 + grantPrize())
+      socket.emit("message", `${name} increased counter, it's now ${count + 1}`);
     }
   }
 
@@ -83,11 +122,11 @@ const Player = ({ count, increaseCounter }) => {
 
   return (
     <div>
-      <button style={styles.roundButton} onClick={() => {handleClick()}}>
+      <button style={styles.roundButton} onClick={() => {handleCounterButtonClick()}}>
         <div>Increase</div>
         <div>counter</div>
       </button>
-      <p> You have { points } points </p>
+    <p>{ renderPlayerInfo() }</p>
     </div>
   )
 }
