@@ -33,16 +33,16 @@ const styles = {
 
   },
   errorAlert: {
+    boxShadow: "10px 10px 11px 0px rgba(0,0,0,0.74)",
     fontSize: 20,
     backgroundColor: "#A9A9A9",
-    padding: 40,
-    border: "solid"
+    padding: 40
   },
   winAlert: {
+    boxShadow: "10px 10px 11px 0px rgba(0,0,0,0.74)",
     fontSize: 20,
     backgroundColor: "#f9ff57",
-    padding: 40,
-    border: "solid"
+    padding: 40
   }
 }
 
