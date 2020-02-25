@@ -57,7 +57,7 @@ const Player = ({ count, increaseCounter }) => {
       prize = 250
     
     if (prize !== 0) {
-      alert.show(<div>You win { prize } points!</div>)
+      alert.show(`You win ${ prize } points!`)
     }
       
     return prize
@@ -78,7 +78,14 @@ const Counter = () => {
   const [count, setCount] = useState(0);
 
   const increaseCounter = () => {
-    setCount(count + 1)
+    if (count === 500) {
+      // Since counter isn't visible, it can be reset at 500
+      // to avoid hitting any max cap for integer
+      setCount(0)
+    }
+    else {
+      setCount(count + 1)
+    }
   }
 
   return (
