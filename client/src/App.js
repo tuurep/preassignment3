@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAlert } from 'react-alert'
 import './App.css';
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:5000");
+let socket;
 
 // Move styles to different file . . .
 const styles = {
@@ -68,11 +68,33 @@ const NameForm = ({ setName }) => {
   )
 }
 
-const Player = ({ count, increaseCounter }) => {
+const Player = ({ count, increaseCounter, setCount }) => {
   const [points, setPoints] = useState(20);
   const [name, setName] = useState('');
 
   const alert = useAlert()
+
+  useEffect(() => {
+    socket = io("http://localhost:5000");
+
+    console.log(socket)
+
+    socket.on('init counter', (payload) => {
+      console.log(`Client finds out that counter is ${payload.counter} upon joining`)
+      setCount(payload.counter)
+    })
+
+    return () => {
+      socket.emit('disconnect')
+      socket.off()
+    }
+  }, [])
+
+  useEffect(() => {
+    socket.on('receive new message', (payload) => {
+      console.log(`Server tells client that counter is now ${payload.counter} over there`)
+    })
+  }, [])
 
   const renderPlayerInfo = () => {
     if (name === '') {  
@@ -82,7 +104,7 @@ const Player = ({ count, increaseCounter }) => {
     }
     else return (
       <div>
-        <p style={{"font-size": 24, "font-weight": "bold"}} >{name}</p>
+        <p style={{"fontSize": 24, "fontWeight": "bold"}} >{name}</p>
         <p>Points: { points }</p>
       </div>
     )
@@ -98,7 +120,7 @@ const Player = ({ count, increaseCounter }) => {
     else {
       increaseCounter()
       setPoints(points - 1 + grantPrize())
-      socket.emit("message", `${name} increased counter, it's now ${count + 1}`);
+      socket.emit("click counter", `${name} increased counter, it's now ${count + 1}`);
     }
   }
 
@@ -126,7 +148,7 @@ const Player = ({ count, increaseCounter }) => {
         <div>Increase</div>
         <div>counter</div>
       </button>
-    <p>{ renderPlayerInfo() }</p>
+      { renderPlayerInfo() }
     </div>
   )
 }
@@ -152,8 +174,8 @@ const Counter = () => {
       <Player 
         count={count}
         increaseCounter={increaseCounter}
-        style={styles.playerInfo}>
-      </Player>
+        setCount={setCount}
+      />
     </div>
   )
 }
@@ -161,9 +183,7 @@ const Counter = () => {
 function App() {
   return (
     <div style={styles.center}>
-      <Counter>
-        
-      </Counter>
+      <Counter />
     </div>
   );
 }
