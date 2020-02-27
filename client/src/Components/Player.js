@@ -1,41 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import CounterButton from './CounterButton'
 
-const NameForm = ({ setName }) => {
-  const [value, setValue] = useState('')
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setName(value)
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Choose your name:
-        <input type="text" value={value} onChange={handleChange} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-  )
-}
-
 const Player = () => {
   const [points, setPoints] = useState(20)
-  const [name, setName] = useState('')
 
   useEffect(() => {
+    // Flaw in my app:
+    // Player can set any points for themselves in
+    // browser's Local Storage. I acknowledge and accept
+    // this flaw in the scope of this preassignment app.
     const localPoints = localStorage.getItem('points')
     if (localPoints) {
       setPoints(JSON.parse(localPoints))
-    }
-    const localName = localStorage.getItem('name')
-    if (localName) {
-      setName(localName)
     }
   }, [])
 
@@ -43,17 +19,8 @@ const Player = () => {
     localStorage.setItem('points', JSON.stringify(points))
   }, [points])
 
-  useEffect(() => {
-    localStorage.setItem('name', name)
-  }, [name])
-
   const renderPlayerInfo = () => {
-    if (name === '') {  
-      return (
-        <NameForm setName={setName} />
-      )
-    }
-    else if (points <= 0) {
+    if (points <= 0) {
       return (
         <div>
           You've lost all points!
@@ -68,8 +35,7 @@ const Player = () => {
 
     else return (
       <div>
-        <p style={{"fontSize": 24, "fontWeight": "bold"}} >{ name }</p>
-        <p>Points: { points }</p>
+        <p>Your points: { points }</p>
       </div>
     )
   }
@@ -79,7 +45,6 @@ const Player = () => {
       <CounterButton 
         points={points}
         setPoints={setPoints}
-        name={name}
       />
       { renderPlayerInfo() }
     </div>

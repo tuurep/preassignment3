@@ -5,7 +5,7 @@ import './CounterButton.css'
 
 let socket;
 
-const CounterButton = ({ points, setPoints, name }) => {
+const CounterButton = ({ points, setPoints }) => {
   const [count, setCount] = useState(-1) // Count is -1 before it's fetched from server, -1 never used
   const alert = useAlert()
   const ENDPOINT = 'http://localhost:5000'
@@ -60,12 +60,9 @@ const CounterButton = ({ points, setPoints, name }) => {
     if (points <= 0) {
       alert.show(<div className="ErrorAlert">You're out of points</div>)
     }
-    else if (name === '') {
-      alert.show(<div className="ErrorAlert">You must choose a name</div>)
-    }
     else {
       setPoints(points - 1 + grantPrize())
-      socket.emit('increase counter', `${name} increases counter, it will be ${count + 1}`);
+      socket.emit('increase counter', `Client increases counter, it will be ${count + 1}`);
     }
   }
 
