@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAlert } from 'react-alert';
 import io from "socket.io-client";
+import './CounterButton.css'
 
 let socket;
 
@@ -49,7 +50,7 @@ const CounterButton = ({ points, setPoints, name }) => {
       prize = 250
     
     if (prize !== 0) {
-      alert.show(<div /*style={styles.winAlert}*/>You win <b>{ prize }</b> points!</div>)
+      alert.show(<div className="WinAlert">You win <b>{ prize }</b> points!</div>)
     }
       
     return prize
@@ -57,10 +58,10 @@ const CounterButton = ({ points, setPoints, name }) => {
 
   const handleCounterButtonClick = () => {
     if (points <= 0) {
-      alert.show(<div /*style={styles.errorAlert}*/>You're out of points</div>)
+      alert.show(<div className="ErrorAlert">You're out of points</div>)
     }
     else if (name === '') {
-      alert.show(<div /*style={styles.errorAlert}*/>You must choose a name</div>)
+      alert.show(<div className="ErrorAlert">You must choose a name</div>)
     }
     else {
       setPoints(points - 1 + grantPrize())
@@ -72,7 +73,7 @@ const CounterButton = ({ points, setPoints, name }) => {
     <div>
       <i>(will be hidden later)</i>
       <h1>{ count }</h1>
-      <button /*style={styles.roundButton}*/ onClick={() => {handleCounterButtonClick()}}>
+      <button className="RoundButton" onClick={() => {handleCounterButtonClick()}}>
         <div>Increase</div>
         <div>counter</div>
       </button>

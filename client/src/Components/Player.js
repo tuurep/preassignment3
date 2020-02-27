@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import CounterButton from './CounterButton'
 
-let socket;
-
 const NameForm = ({ setName }) => {
   const [value, setValue] = useState('')
 
