@@ -17,8 +17,8 @@ io.on('connection', socket => {
     console.log(msg);
     counter++
     console.log(`Server side counter is ${counter}`)
-    socket.emit('receive new counter', { counter: counter })
+    io.emit('click counter', { counter: counter })
   });
 
-  socket.on('disconnect', () => console.log('Client disconnected'));
+  socket.on('disconnect', () => console.log(`Client ${id} disconnected`));
 });

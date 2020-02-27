@@ -54,6 +54,7 @@ const NameForm = ({ setName }) => {
   }
 
   const handleSubmit = (event) => {
+    event.preventDefault()
     setName(value)
   }
 
@@ -75,7 +76,7 @@ const Player = ({ count, increaseCounter, setCount }) => {
   const alert = useAlert()
 
   useEffect(() => {
-    socket = io("http://localhost:5000");
+    socket = io('http://localhost:5000');
 
     console.log(socket)
 
@@ -91,10 +92,11 @@ const Player = ({ count, increaseCounter, setCount }) => {
   }, [])
 
   useEffect(() => {
-    socket.on('receive new message', (payload) => {
+    socket.on('click counter', (payload) => {
       console.log(`Server tells client that counter is now ${payload.counter} over there`)
+      setCount(payload.counter)
     })
-  }, [])
+  }, [count, points])
 
   const renderPlayerInfo = () => {
     if (name === '') {  
@@ -118,9 +120,8 @@ const Player = ({ count, increaseCounter, setCount }) => {
       alert.show(<div style={styles.errorAlert}>You must choose a name</div>)
     }
     else {
-      increaseCounter()
       setPoints(points - 1 + grantPrize())
-      socket.emit("click counter", `${name} increased counter, it's now ${count + 1}`);
+      socket.emit('click counter', `${name} increased counter, it's now ${count + 1}`);
     }
   }
 
@@ -156,6 +157,7 @@ const Player = ({ count, increaseCounter, setCount }) => {
 const Counter = () => {
   const [count, setCount] = useState(0);
 
+  /*
   const increaseCounter = () => {
     if (count === 500) {
       // Since counter isn't visible, it can be reset at 500
@@ -166,6 +168,7 @@ const Counter = () => {
       setCount(count + 1)
     }
   }
+  */
 
   return (
     <div>
@@ -173,7 +176,7 @@ const Counter = () => {
       <h1>{ count }</h1>
       <Player 
         count={count}
-        increaseCounter={increaseCounter}
+        // increaseCounter={increaseCounter}
         setCount={setCount}
       />
     </div>
