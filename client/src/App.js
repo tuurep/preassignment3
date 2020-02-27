@@ -93,7 +93,7 @@ const Player = () => {
   }, [])
 
   useEffect(() => {
-    socket.on('click counter', (payload) => {
+    socket.on('increase counter', (payload) => {
       console.log(`Server tells client that counter is now ${payload.counter} over there`)
       count = payload.counter
     })
@@ -122,7 +122,7 @@ const Player = () => {
     }
     else {
       setPoints(points - 1 + grantPrize())
-      socket.emit('click counter', `${name} increased counter, it's now ${count + 1}`);
+      socket.emit('increase counter', `${name} increased counter, it's now ${count + 1}`);
     }
   }
 
@@ -156,27 +156,6 @@ const Player = () => {
     </div>
   )
 }
-
-/*
-const Counter = () => {
-  const [count, setCount] = useState(0);
-
-  const increaseCounter = () => {
-    if (count === 500) {
-      // Since counter isn't visible, it can be reset at 500
-      // to avoid hitting any max cap for integer
-      setCount(0)
-    }
-    else {
-      setCount(count + 1)
-    }
-  }
-
-  return (
-    
-  )
-}
-*/
 
 function App() {
   return (
