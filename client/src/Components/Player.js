@@ -6,9 +6,13 @@ const Player = () => {
 
   useEffect(() => {
     // Flaw in my app:
-    // Player can set any points for themselves in
-    // browser's Local Storage. I acknowledge and accept
-    // this flaw in the scope of this preassignment app.
+    // Player can set any points for themselves in browser's Local Storage, if they know how. 
+    // I acknowledge and accept this flaw in the scope of this preassignment app.
+    // Another problem:
+    // Player can open multiple tabs and their points are not synchronized unless page is refreshed.
+    // Both of these are just unintended ways to play the game, but would be big problems in a more
+    // critical application.
+    
     const localPoints = localStorage.getItem('points')
     if (localPoints) {
       setPoints(JSON.parse(localPoints))
@@ -19,7 +23,7 @@ const Player = () => {
     localStorage.setItem('points', JSON.stringify(points))
   }, [points])
 
-  const renderPlayerInfo = () => {
+  const renderPointsArea = () => {
     if (points <= 0) {
       return (
         <div>
@@ -46,7 +50,7 @@ const Player = () => {
         points={points}
         setPoints={setPoints}
       />
-      { renderPlayerInfo() }
+      { renderPointsArea() }
     </div>
   )
 }

@@ -6,7 +6,7 @@ import './CounterButton.css'
 let socket;
 
 const CounterButton = ({ points, setPoints }) => {
-  const [count, setCount] = useState(-1) // Count is -1 before it's fetched from server, -1 never used
+  const [count, setCount] = useState()
   const alert = useAlert()
   const ENDPOINT = 'http://localhost:5000'
 
@@ -38,6 +38,18 @@ const CounterButton = ({ points, setPoints }) => {
     })
   }, [])
 
+  const renderClicksTilWin = () => {
+    if (count) {
+      const clicksTilNextPrize = 10 - (count % 10)
+
+      return (
+        <h1>
+          { clicksTilNextPrize } clicks until next prize
+        </h1>
+      )
+    }
+  }
+
   const grantPrize = () => {
     const new_count = count + 1
     var prize = 0
@@ -68,7 +80,7 @@ const CounterButton = ({ points, setPoints }) => {
 
   return (
     <div>
-      <h1>Clicks until next win: { 10 - (count % 10) }</h1>
+      { renderClicksTilWin() }
       <button className="RoundButton" onClick={() => {handleCounterButtonClick()}}>
         <div>Increase</div>
         <div>counter</div>
