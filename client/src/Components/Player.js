@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CounterButton from './CounterButton'
 
 const NameForm = ({ setName }) => {
@@ -27,6 +27,25 @@ const NameForm = ({ setName }) => {
 const Player = () => {
   const [points, setPoints] = useState(20)
   const [name, setName] = useState('')
+
+  useEffect(() => {
+    const localPoints = localStorage.getItem('points')
+    if (localPoints) {
+      setPoints(JSON.parse(localPoints))
+    }
+    const localName = localStorage.getItem('name')
+    if (localName) {
+      setName(localName)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('points', JSON.stringify(points))
+  }, [points])
+
+  useEffect(() => {
+    localStorage.setItem('name', name)
+  }, [name])
 
   const renderPlayerInfo = () => {
     if (name === '') {  
