@@ -6,7 +6,7 @@ import './CounterButton.css'
 let socket;
 
 const CounterButton = ({ points, setPoints, name }) => {
-  const [count, setCount] = useState(-1)
+  const [count, setCount] = useState(-1) // Count is -1 before it's fetched from server, -1 never used
   const alert = useAlert()
   const ENDPOINT = 'http://localhost:5000'
 
@@ -71,8 +71,7 @@ const CounterButton = ({ points, setPoints, name }) => {
 
   return (
     <div>
-      <i>(will be hidden later)</i>
-      <h1>{ count }</h1>
+      <h1>Clicks until next win: { 10 - (count % 10) }</h1>
       <button className="RoundButton" onClick={() => {handleCounterButtonClick()}}>
         <div>Increase</div>
         <div>counter</div>
