@@ -4,6 +4,7 @@ import './App.css';
 import io from "socket.io-client";
 
 let socket;
+let count;
 
 // Move styles to different file . . .
 const styles = {
@@ -69,7 +70,7 @@ const NameForm = ({ setName }) => {
   )
 }
 
-const Player = ({ count, increaseCounter, setCount }) => {
+const Player = () => {
   const [points, setPoints] = useState(20);
   const [name, setName] = useState('');
 
@@ -82,7 +83,7 @@ const Player = ({ count, increaseCounter, setCount }) => {
 
     socket.on('init counter', (payload) => {
       console.log(`Client finds out that counter is ${payload.counter} upon joining`)
-      setCount(payload.counter)
+      count = payload.counter
     })
 
     return () => {
@@ -94,9 +95,9 @@ const Player = ({ count, increaseCounter, setCount }) => {
   useEffect(() => {
     socket.on('click counter', (payload) => {
       console.log(`Server tells client that counter is now ${payload.counter} over there`)
-      setCount(payload.counter)
+      count = payload.counter
     })
-  }, [count, points])
+  }, [])
 
   const renderPlayerInfo = () => {
     if (name === '') {  
@@ -145,6 +146,8 @@ const Player = ({ count, increaseCounter, setCount }) => {
 
   return (
     <div>
+      <i>(will be hidden later)</i>
+      <h1>{ count + 1 }</h1>
       <button style={styles.roundButton} onClick={() => {handleCounterButtonClick()}}>
         <div>Increase</div>
         <div>counter</div>
@@ -154,10 +157,10 @@ const Player = ({ count, increaseCounter, setCount }) => {
   )
 }
 
+/*
 const Counter = () => {
   const [count, setCount] = useState(0);
 
-  /*
   const increaseCounter = () => {
     if (count === 500) {
       // Since counter isn't visible, it can be reset at 500
@@ -168,27 +171,19 @@ const Counter = () => {
       setCount(count + 1)
     }
   }
-  */
 
   return (
-    <div>
-      <i>(will be hidden later)</i>
-      <h1>{ count }</h1>
-      <Player 
-        count={count}
-        // increaseCounter={increaseCounter}
-        setCount={setCount}
-      />
-    </div>
+    
   )
 }
+*/
 
 function App() {
   return (
     <div style={styles.center}>
-      <Counter />
+      <Player />
     </div>
-  );
+  )
 }
 
 export default App
