@@ -4,19 +4,25 @@ import CounterButton from './CounterButton'
 const Player = () => {
   const [points, setPoints] = useState(20)
 
-  useEffect(() => {
-    // Flaw in my app:
-    // Player can set any points for themselves in browser's Local Storage, if they know how. 
-    // I acknowledge and accept this flaw in the scope of this preassignment app.
-    // Another problem:
-    // Player can open multiple tabs and their points are not synchronized unless page is refreshed.
-    // Both of these are just unintended ways to play the game, but would be big problems in a more
-    // critical application.
-    
+  const setPointsFromLocalStorage = () => {
     const localPoints = localStorage.getItem('points')
     if (localPoints) {
       setPoints(JSON.parse(localPoints))
     }
+  }
+
+  window.onstorage = event => {
+    // For synching multiple tabs of same player:
+    // Listens to changes of state in Local Storage
+    setPointsFromLocalStorage()
+  }
+
+  useEffect(() => {
+    // Flaw in my app:
+    // Player can set any points for themselves in browser's Local Storage, if they know how. 
+    // I acknowledge and accept this flaw in the scope of this preassignment app.
+    
+    setPointsFromLocalStorage()
   }, [])
 
   useEffect(() => {
