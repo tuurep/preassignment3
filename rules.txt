@@ -1,0 +1,15 @@
+Rules of the Counter Game:
+
+Clicking the button costs one point.
+Everyone is increasing the same click count with each click.
+
+How you win points:
+
+Every 10th (collective) click awards the player 5 points.
+Every 100th click awards 40 points.
+Every 500th click awards 250 points.
+
+Reaching zero points means you can no longer click, but you can
+just reset back to the initial 20 points.
+
+Have fun!
