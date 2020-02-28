@@ -1,6 +1,6 @@
 ### Preassignment project
 
-Objectives:
+**Objectives:**
 
 * Creating a multiplayer game
 * React web application
@@ -30,3 +30,11 @@ Run both servers with *concurrently*
 * *Be at /server directory*
 * `npm run dev`
 * App runs at localhost:3000
+
+**Available publicly on the Internet:**
+
+Go here to see and try the app:
+* [https://preassignment3-client.herokuapp.com/](https://preassignment3-client.herokuapp.com/)
+
+I created separate Heroku dynos for server and client. Server is running here, but there's nothing to see:
+* [https://preassignment3-server.herokuapp.com/](https://preassignment3-server.herokuapp.com/)
