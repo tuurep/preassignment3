@@ -5,7 +5,7 @@ Everyone is increasing the same click count with each click.
 
 How you win points:
 
-Every 10th (collective) click awards the player 5 points.
+Every 10th (collective) click awards the one who clicked 5 points.
 Every 100th click awards 40 points.
 Every 500th click awards 250 points.
 
