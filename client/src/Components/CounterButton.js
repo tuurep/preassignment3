@@ -43,9 +43,14 @@ const CounterButton = ({ points, setPoints }) => {
       const clicksTilNextPrize = 10 - (count % 10)
 
       return (
-        <h1>
-          { clicksTilNextPrize } clicks until next prize
-        </h1>
+        <div>
+          <div className="ClickDisplayHeader">
+            Clicks until next prize:
+          </div>
+          <div className="ClickDisplay">
+            { clicksTilNextPrize }
+          </div>
+        </div>
       )
     }
   }

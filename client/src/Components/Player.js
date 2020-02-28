@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import CounterButton from './CounterButton'
+import CounterButton from './CounterButton';
+import './Player.css'
 
 const Player = () => {
   const [points, setPoints] = useState(20)
@@ -21,7 +22,6 @@ const Player = () => {
     // Flaw in my app:
     // Player can set any points for themselves in browser's Local Storage, if they know how. 
     // I acknowledge and accept this flaw in the scope of this preassignment app.
-    
     setPointsFromLocalStorage()
   }, [])
 
@@ -33,9 +33,9 @@ const Player = () => {
     if (points <= 0) {
       return (
         <div>
-          You've lost all points!
-          <div>
-            <button onClick={() => { setPoints(20) }}>
+          <div className="PointsDisplayHeader">You've lost all points!</div>
+          <div className="PointsDisplay">
+            <button className="RestartButton" onClick={() => { setPoints(20) }}>
               Start over
             </button>
           </div>
@@ -45,7 +45,8 @@ const Player = () => {
 
     else return (
       <div>
-        <p>Your points: { points }</p>
+        <div className="PointsDisplayHeader">Your points:</div>
+        <div className="PointsDisplay">{ points }</div>
       </div>
     )
   }

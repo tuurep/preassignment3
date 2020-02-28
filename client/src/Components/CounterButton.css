@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 
 .RoundButton {
   border-radius: 50%;
@@ -11,19 +12,40 @@
   color: white;
   line-height: 1.9;
   box-shadow: 5px 10px #282828;
-  margin-bottom: 80px
+  margin: 100px
+}
+
+.ClickDisplayHeader {
+  font-family: Oswald;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.ClickDisplay {
+  width: 9%;
+  background-color: #282828;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 4px 4px black;
+  font-size: 24px;
+  padding: 6px;
+  margin: 0 auto;
+  border: solid;
+  border-color: black
 }
 
 .ErrorAlert {
+  font-family: Oswald;
   box-shadow: 10px 10px 11px 0px rgba(0,0,0,0.74);
-  font-size: 20;
+  font-size: 30px;
   background-color: #A9A9A9;
   padding: 40px
 }
 
 .WinAlert {
+  font-family: Oswald;
   box-shadow: 10px 10px 11px 0px rgba(0,0,0,0.74);
-  font-size: 20;
-  background-color: #f9ff57;
+  font-size: 30px;
+  background-color: #fffc5f;
   padding: 40px
 }

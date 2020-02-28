@@ -7,7 +7,7 @@ import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 
 const options = {
   // you can also just use 'top center'
-  position: positions.TOP_CENTER,
+  position: positions.TOP_RIGHT,
   timeout: 3000,
   offset: '30px',
   // you can also just use 'scale'

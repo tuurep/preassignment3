@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+.PointsDisplayHeader {
+  font-family: Oswald;
+  font-size: 24px;
+  margin-bottom: 5px;
+  margin-top: 18px;
+}
+
+.PointsDisplay {
+  font-size: 50px;
+  font-family: Montserrat;
+  text-shadow: 5px 5px black;
+  color: #ffd666;
+}
+
+.RestartButton {
+  font-family: Oswald;
+  font-size: 24px;
+}
