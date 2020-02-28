@@ -1,6 +1,7 @@
 {
   "name": "preassignment_vincit",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -14,6 +15,7 @@
     "use-socket.io-client": "^1.0.4"
   },
   "scripts": {
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
