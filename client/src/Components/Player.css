@@ -9,13 +9,20 @@
 }
 
 .PointsDisplay {
+  margin: 0 auto;
   font-size: 50px;
   font-family: Montserrat;
+  letter-spacing: 3px;
   text-shadow: 5px 5px black;
-  color: #ffd666;
+  color: white;
 }
 
 .RestartButton {
+  background-color: #282828;
+  outline: none;
+  color: white;
+  padding: 6px;
+  border-radius: 20%;
   font-family: Oswald;
   font-size: 24px;
 }

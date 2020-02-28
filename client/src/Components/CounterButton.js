@@ -13,13 +13,7 @@ const CounterButton = ({ points, setPoints }) => {
   useEffect(() => {
     socket = io(ENDPOINT);
 
-    // Debug
-    console.log(socket)
-
     socket.on('init counter', (payload) => {
-      //Debug
-      console.log(`Client finds out that counter is ${payload.counter} upon joining`)
-
       setCount(payload.counter)
     })
 
@@ -31,9 +25,6 @@ const CounterButton = ({ points, setPoints }) => {
 
   useEffect(() => {
     socket.on('increase counter', (payload) => {
-      // Debug
-      console.log(`Server tells client that counter is now ${payload.counter} over there`)
-
       setCount(payload.counter)
     })
   }, [])

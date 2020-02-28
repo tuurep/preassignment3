@@ -10,11 +10,11 @@ let counter = 0;
 
 io.on('connection', socket => {
   const { id } = socket.client;
-  console.log(`User connected: ${id}\nCounter is ${counter}`);
+  console.log(`User connected: ${id}`);
   socket.emit('init counter', { counter: counter })
 
   socket.on('increase counter', msg => {
-    console.log(msg);
+    console.log(`${id}: ${msg}`);
 
     if (counter === 500) {
       // Since counter is not visible, it can be reset
@@ -22,8 +22,6 @@ io.on('connection', socket => {
       counter = 1
     }
     else counter++
-
-    console.log(`Server side counter is ${counter}`)
     io.emit('increase counter', { counter: counter })
   });
 
