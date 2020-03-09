@@ -17,8 +17,7 @@ io.on('connection', socket => {
     console.log(`${id}: ${msg}`);
 
     if (counter === 500) {
-      // Since counter is not visible, it can be reset
-      // at 500 to avoid hitting any int max cap
+      // Counter can be reset, because it's not visible
       counter = 1
     }
     else counter++
